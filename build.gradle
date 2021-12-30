@@ -30,7 +30,11 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor("org.projectlombok:lombok") // 롬복 라이브러리 (의존성) 추가
+    compileOnly("org.projectlombok:lombok") // 롬복 라이브러리 (의존성) 추가 (둘 다)
     implementation('org.springframework.boot:spring-boot-starter-web')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa') // JPA 의존성1 (스프링에 알맞은 버전의 JPA 관리)
+    implementation('com.h2database:h2') // JPA 의존성2 (인메모리 관계형 데이터베이스)
 }
 
