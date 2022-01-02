@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter // 필드들에 대한 게터를 생성해주는 애노테이션 // 6
-@NoArgsConstructor // final 필드에 대한 생성자를 생성해주는 애노테이션 // 5
+@Getter // 필드들에 대한 게터를 생성해주는 애노테이션
+@NoArgsConstructor // 필드값이 없는 (NoArgs) 기본 생성자를 생성해주는 애노테이션
 @Entity // 테이블과 링크될 클래스임을 나타내는 애노테이션
 public class Posts {
 // Entity 클래스는 절대로 세터를 생성하지 말아야 한다.(p.92) 값 변경이 필요하다면 명확히 목적과 의도를 나타낼 수 있는 메소드를 추가함.
@@ -29,6 +29,7 @@ public class Posts {
     private String author;
 
     @Builder // 해당 클래스의 빌더 패턴 클래스를 생성(생성자 상단에 선언 시 생성자에 포함된 필드만 빌더에 포함한다)(?)
+    // 굳이 생성자를 쓰지 않는 이유는 생성자의 경우 지금 당장 채워야 할 필드가 무엇인지 명확히 지정할 수가 없을 수 있다 (p.93)
     public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
