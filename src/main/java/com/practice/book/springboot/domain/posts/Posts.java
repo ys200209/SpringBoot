@@ -1,5 +1,6 @@
 package com.practice.book.springboot.domain.posts;
 
+import com.practice.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter // 필드들에 대한 게터를 생성해주는 애노테이션
 @NoArgsConstructor // 필드값이 없는 (NoArgs) 기본 생성자를 생성해주는 애노테이션
 @Entity // 테이블과 링크될 클래스임을 나타내는 애노테이션
-public class Posts {
+public class Posts extends BaseTimeEntity {
 // Entity 클래스는 절대로 세터를 생성하지 말아야 한다.(p.92) 값 변경이 필요하다면 명확히 목적과 의도를 나타낼 수 있는 메소드를 추가함.
 
     @Id // 해당 테이블의 기본키를 나타내는 애노테이션
@@ -34,6 +35,11 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 
 }

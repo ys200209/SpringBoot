@@ -1,0 +1,13 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- 부트스트랩의 경우엔 제이쿼리가 반드시 필요하기 때문에 위에서 제이쿼리를 먼저 호출해주었음 (부트스트랩이 제이쿼리를 의존한다고 표현함)-->
+
+<!--index.js 추가-->
+<script src="/js/app/index.js"></script>
+<!--
+    현재 footer.mustache 파일에서 해당 경로로 호출하는 것은 말이 안되지만,
+    스프링 부트는 resources/static에 위치한 파일들을 '/' 루트 경로로 설정해버리기 때문에 위와같이 바로 절대 경로로 접근 가능하다.
+-->
+<h5>footer</h5>
+</body>
+</html>

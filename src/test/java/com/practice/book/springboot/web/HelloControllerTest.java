@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class) // SpringRunner라는 스프링 실행자를 이용해 테스트를 진행함
-@WebMvcTest(controllers = HelloController.class) // Web에 집중할 수 있는 애노테이션
+@WebMvcTest(controllers = HelloController.class) // Web에 집중할 수 있는 애노테이션 (JPA 기능이 작동하지 않음)
 public class HelloControllerTest {
 
     @Autowired // 빈 주입
