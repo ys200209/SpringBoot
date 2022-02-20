@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PostsSaveRequestDto {
+public class PostsSaveRequestDto { // 내가 이해한 바로는 Dto 객체는 스프링에서의 커맨드객체와 동일한 기능을 수행(값들을 포장)함.
     private String title;
     private String content;
     private String author;

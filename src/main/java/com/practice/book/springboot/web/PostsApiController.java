@@ -15,6 +15,9 @@ public class PostsApiController {
 
     @PostMapping("/api/v1/posts") // INSERT
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
+        System.out.println("requestDto.getContent() : " + requestDto.getContent());
+        System.out.println("requestDto.getAuthor() : " + requestDto.getAuthor());
+        System.out.println("requestDto.getTitle() : " + requestDto.getTitle());
         return postsService.save(requestDto);
     }
 
@@ -28,6 +31,15 @@ public class PostsApiController {
         return postsService.findById(id);
     }
 
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
+        // delete는 삭제만 할뿐, 추가로 변경된 객체를 줄 필요가 없기 때문에
+        // return을 void로 주지 않았더니 Error가 발생했다.
+        // return 해봤자 아무 의미도 없고 리턴한다고 해서 누가 받아 사용하는 것으로
+        // 보이지도 않는데 id를 리턴해야 parserError가 뜨지 않는다.
+    }
 
 
 }
