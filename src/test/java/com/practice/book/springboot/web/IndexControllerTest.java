@@ -24,7 +24,8 @@ public class IndexControllerTest {
         String body = this.restTemplate.getForObject("/", String.class);
 
         // then
-        assertThat(body).contains("Start Web Service With Spring-Boot");
+        // assertThat(body).contains("Start Web Service With Spring-Boot"); index.mustache (header.mustache) 에 해당 타이틀이 아니라서 수정함
+        assertThat(body).contains("Spring-Boot Web Service");
 
 
 

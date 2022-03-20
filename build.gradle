@@ -39,4 +39,5 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-mustache') // 머스테치 의존성 (하나만 추가하면 설치 끝)
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client') // OAuth2 소셜 기능 의존성
     implementation('org.springframework.session:spring-session-jdbc') // 세션을 내장톰캣이 아닌 DB에 저장하기 위한 의존성
+    testImplementation('org.springframework.security:spring-security-test') // 스프링 테스트 환경에서 시큐리티에 접근할 수 있게 해주는 의존성
 }

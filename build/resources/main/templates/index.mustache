@@ -1,4 +1,4 @@
-{{>layout/header}} <!-- 앞의 기호는 현재 머스테치 파일(index.mustache) 기준으로 다른 파일을 가져오는 명령어이다. -->
+{{>layout/header}} <!-- 앞의 기호('>')는 현재 머스테치 파일(index.mustache) 기준으로 다른 파일을 가져오는 명령어이다. -->
 
     <h1> Spring-Boot</h1>
     <div class="col-md-12">
@@ -15,6 +15,13 @@
                 {{^userName}} <!-- 머스테치에선 해당 값이 존재하지 않는 경우엔 ^를 사용함.(null값 조차도 존재하면 안되나봄) userName이 없다면 로그인 버튼을 노출시킴. -->
                     <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
                     <!-- 위의 URL은 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL임. (컨트롤러를 만들 필요가 없다) -->
+                {{/userName}}
+
+                {{^userName}} <!-- 머스테치에선 해당 값이 존재하지 않는 경우엔 ^를 사용함.(null값 조차도 존재하면 안되나봄) userName이 없다면 로그인 버튼을 노출시킴. -->
+                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+                    <!-- 위의 URL은 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL임. (컨트롤러를 만들 필요가 없다) -->
+                    <!-- Google과 Naver 모두 '/oauth2/authorization/' 까지는 고정이며, 마지막 Path만 각 소셜 로그인 코드를 사용한다. -->
+
                 {{/userName}}
             </div>
         </div>

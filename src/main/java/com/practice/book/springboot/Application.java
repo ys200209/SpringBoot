@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@EnableJpaAuditing
+// @EnableJpaAuditing (main과 test 환경 둘을 분리해놓기 위해 여기서 선언하는 것이 아닌, config.JpaConfig에 추가해줌)
+// (그렇지 않으면 test 환경에서 Jpa를 사용해야 하는데 test 환경에서는 Entity를 생성하지 않기 때문에 에러가 발생한다)
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer { // 1
     public static void main(String[] args) {
