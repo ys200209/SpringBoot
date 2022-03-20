@@ -1,5 +1,6 @@
 package com.practice.book.springboot.web;
 
+import com.practice.book.springboot.config.auth.LoginUser;
 import com.practice.book.springboot.config.auth.dto.SessionUser;
 import com.practice.book.springboot.service.posts.PostsService;
 import com.practice.book.springboot.web.dto.PostsResponseDto;
@@ -19,12 +20,16 @@ public class IndexController { // 머스테치 뷰 페이지 컨트롤러 (데�
     private final HttpSession httpSession; // 의존성주입(DI)
 
     @GetMapping("/")
-    public String index(Model model) { // Model : 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장한다.
+    public String index(Model model, @LoginUser SessionUser user) { // Model : 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장한다.
+
         model.addAttribute("posts", postsService.findAllDesc());
         // postsService.findAllDesc()로 가져온 결과를 posts라는 이름으로 index.mustache에 전달한다는 의미이다.
 
         // CustomOAuth2UserService 클래스에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구현하였음.
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // 현재 메서드인 index() 메서드 외에 다른 컨트롤러 or 메서드에서 세션값이 필요할 때마다 아래 코드를 적는 것은 코드 중복 문제를 야기함.
+        // 따라서 아래 세션값 받아오는 부분을 메서드 인자로 세션값을 바로 받을 수 있는 방식으로 구현할 것임. (@LoginUser 클래스 어노테이션)
+        // SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // 해당 index() 메서드의 파라미터로 세션을 넘겨받는 식으로 구현해주었으며, 앞으로도 다른 부분에서 세션이 필요하면 이와 같이 하면 된다.
 
         if (user != null) { // 세션 값이 null이 아니라면
             model.addAttribute("userName", user.getName()); // 사용자 이름도 전달해라.

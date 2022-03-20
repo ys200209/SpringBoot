@@ -40,7 +40,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint()
                 .getUserNameAttributeName();
-        System.out.println("1 userNameAttributeName : " + userNameAttributeName);
 
         // OAuthAttributes : OAuth2UserService를 통해 가져온 OAuth2User의 attribute를 담을 클래스이다.
         // 이후 네이버 등 다른 소셜 로그인도 이 클래스를 사용함.
@@ -53,7 +52,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user));
 
-        System.out.println("2 userNameAttributeName : " + attributes.getNameAttributeKey());
         return new DefaultOAuth2User(
                 Collections.singleton(new
                         SimpleGrantedAuthority(user.getRoleKey())),
@@ -64,7 +62,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     // 구글 사용자 정보가 업데이트 되었을 때를 대비해 update 기능도 같이 구현함.
     // name 및 picture가 변경되면 User 엔티티에도 반영이 되도록.
     private User saveOrUpdate(OAuthAttributes attributes) {
-        System.out.println("(saveOrUpdate) attributes.getEmail() = " + attributes.getEmail());
+        System.out.println("(CustomOAuth2UserService - saveOrUpdate) attributes.getEmail() = " + attributes.getEmail());
         User user = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.
                         getName(), attributes.getPicture()))
