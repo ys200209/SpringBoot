@@ -5,9 +5,20 @@
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                {{#userName}}
+                    <!-- 머스테치는 다른 언어의 if문을 제공하지 않으며, True/False만 판단한다. -->
+                    <!-- 그래서 항상 머스테치에서는 최종값을 넘겨줘야 하며, 여기서도 역시 userName이 있다면 userName을 노출시켰다. -->
+                    Logged in as : <span id="user">{{userName}}</span>
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                    <!-- "/logout"은 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL이다 (컨트롤러를 만들 필요가 없다) -->
+                {{/userName}}
+                {{^userName}} <!-- 머스테치에선 해당 값이 존재하지 않는 경우엔 ^를 사용함.(null값 조차도 존재하면 안되나봄) userName이 없다면 로그인 버튼을 노출시킴. -->
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                    <!-- 위의 URL은 스프링 시큐리티에서 기본적으로 제공하는 로그인 URL임. (컨트롤러를 만들 필요가 없다) -->
+                {{/userName}}
             </div>
         </div>
-
+        <br>
         <!-- 목록 출력 영역 -->
         <table class="table table-horizontal table-bordered">
             <thead class="thead-strong">
@@ -20,7 +31,7 @@
             </thead>
             <tbody id="tbody">
 
-            {{#posts}} <!-- 머스테치의 문법 : posts라는 List를 순회한다. (for문) -->
+            {{#posts}} <!-- 머스테치의 문법 : posts라는 List를 순회한다. (if문) -->
                 <tr>
                     <td>{{id}}</td> <!-- List에서 뽑아낸 객체의 필드를 사용한다. -->
                     <td><a href="/posts/update/{{id}}"/>{{title}}</td>

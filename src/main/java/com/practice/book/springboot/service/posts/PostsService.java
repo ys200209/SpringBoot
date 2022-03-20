@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor // Bean 주입을 @Autowired가 아닌 생성자로 주입받음.
+@RequiredArgsConstructor // final 필드에 대해서 의존성 주입(DI)을 @Autowired가 아닌 생성자로 '임의의 코드 없이' 자동으로 설정
 @Service
 public class PostsService { // Repository를 상속받아 DB로의 CRUD를 직접적으로 수행하는 서비스 클래스
 
-    private final PostsRepository postsRepository;
+    private final PostsRepository postsRepository; // final로 선언을 해야 DI를 자동으로 주입 받을 수 있다. ( @RequiredArgsConstrictor )
 
     @Transactional // INSERT
     public Long save(PostsSaveRequestDto requestDto) {
